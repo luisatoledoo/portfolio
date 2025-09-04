@@ -269,7 +269,6 @@ h2 {
 
 .project-card:hover .card-overlay {
   opacity: 1;
-  pointer-events: auto;
 }
 
 #skills{
@@ -363,6 +362,7 @@ footer {
   margin-top: 3rem;
 
 }
+
 
 
 
