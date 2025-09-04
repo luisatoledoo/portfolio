@@ -10,19 +10,20 @@ document.addEventListener("DOMContentLoaded", () => {
   const contactItems = document.querySelectorAll(".contact p");
   const typingSection = document.querySelector(".motivacional");
   const typingLines = document.querySelectorAll(".typing-line");
-  const projectVideos = document.querySelectorAll('.project-card video');
 
+  // Fade-in para elementos
   const observer = new IntersectionObserver(
-    entries => {
+    (entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) entry.target.classList.add("visible");
         else entry.target.classList.remove("visible");
       });
-    },
+    }, 
     { threshold: 0.2 }
   );
   fadeElements.forEach(el => observer.observe(el));
 
+  // Parallax colunas
   window.addEventListener('scroll', () => {
     const scrollY = window.scrollY;
     const speed = 0.2;
@@ -30,8 +31,9 @@ document.addEventListener("DOMContentLoaded", () => {
     if(columnRight) columnRight.style.transform = `translateY(${-50 + scrollY*speed}px)`;
   });
 
+  // Skills animation
   const observerSkills = new IntersectionObserver(
-    entries => {
+    (entries) => {
       entries.forEach(entry => {
         if(entry.isIntersecting){
           const skillsArray = Array.from(skillItems);
@@ -57,6 +59,7 @@ document.addEventListener("DOMContentLoaded", () => {
   );
   if(skillsSection) observerSkills.observe(skillsSection);
 
+  // Mini header ao scroll
   window.addEventListener('scroll', () => {
     if(window.scrollY > 100){
       header.classList.add('nav-mini');
@@ -66,28 +69,30 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
+  // Menu flutuante
   menuBolha.addEventListener('click', () => {
     menuFlutuante.classList.toggle('active');
   });
-
   document.addEventListener('click', (e) => {
     if(!menuFlutuante.contains(e.target) && !menuBolha.contains(e.target)){
       menuFlutuante.classList.remove('active');
     }
   });
 
-  projectVideos.forEach(video => {
+  // Play/pause vídeos ao clicar
+  document.querySelectorAll('.project-card video').forEach(video => {
     video.addEventListener('click', () => {
       if(video.paused) video.play();
       else video.pause();
     });
   });
 
+  // Typing effect
   const typeSpeed = 45;
   const initialDelay = 500;
   if(typingSection){
     const observerTyping = new IntersectionObserver(
-      entries => {
+      (entries) => {
         entries.forEach(entry => {
           if(entry.isIntersecting){
             let totalDelay = initialDelay;
@@ -110,14 +115,15 @@ document.addEventListener("DOMContentLoaded", () => {
             });
           }
         });
-      },
+      }, 
       { threshold: 0.1 }
     );
     observerTyping.observe(typingSection);
   }
 
+  // Contact animation
   const observerContact = new IntersectionObserver(
-    entries => {
+    (entries) => {
       entries.forEach(entry => {
         if(entry.isIntersecting){
           let delay = 0;
