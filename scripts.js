@@ -5,96 +5,75 @@ document.addEventListener("DOMContentLoaded", () => {
   const columnRight = document.querySelector(".column-right");
   const skillItems = document.querySelectorAll(".skill-item");
   const skillsSection = document.getElementById("skills");
-  const menuBolha = document.querySelector('.menu-bolha');
-  const menuFlutuante = document.querySelector('.menu-flutuante');
+  const menuBolha = document.querySelector(".menu-bolha");
+  const menuFlutuante = document.querySelector(".menu-flutuante");
   const contactItems = document.querySelectorAll(".contact p");
   const typingSection = document.querySelector(".motivacional");
   const typingLines = document.querySelectorAll(".typing-line");
-  const projectMedia = document.querySelectorAll(".card-media");
+  const projectMedia = document.querySelectorAll(".card-media video");
 
+  // === Fade-in de elementos ===
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) entry.target.classList.add("visible");
       else entry.target.classList.remove("visible");
     });
   }, { threshold: 0.2 });
+
   fadeElements.forEach(el => observer.observe(el));
 
-  window.addEventListener('scroll', () => {
+  // === Parallax nas colunas ===
+  window.addEventListener("scroll", () => {
     const scrollY = window.scrollY;
     const speed = 0.2;
-    if(columnLeft) columnLeft.style.transform = `translateY(${400 - scrollY*speed}px)`;
-    if(columnRight) columnRight.style.transform = `translateY(${-50 + scrollY*speed}px)`;
-  });
+    if (columnLeft) columnLeft.style.transform = `translateY(${400 - scrollY * speed}px)`;
+    if (columnRight) columnRight.style.transform = `translateY(${-50 + scrollY * speed}px)`;
 
-  const observerSkills = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if(entry.isIntersecting){
-        const skillsArray = Array.from(skillItems);
-        skillsArray.forEach(item => {
-          const randX = Math.random();
-          const randY = Math.random();
-          const randR = Math.random();
-          item.style.setProperty('--randX', randX);
-          item.style.setProperty('--randY', randY);
-          item.style.setProperty('--randR', randR);
-          item.classList.add('scatter');
-        });
-        setTimeout(() => {
-          skillsArray.forEach(item => {
-            item.classList.remove('scatter');
-            item.style.opacity = '1';
-          });
-        }, 500);
-      }
-    });
-  }, { threshold: 0.3 });
-  if(skillsSection) observerSkills.observe(skillsSection);
-
-  window.addEventListener('scroll', () => {
-    if(window.scrollY > 100){
-      header.classList.add('nav-mini');
+    // Header mini
+    if (scrollY > 100) {
+      header.classList.add("nav-mini");
     } else {
-      header.classList.remove('nav-mini');
-      menuFlutuante.classList.remove('active');
+      header.classList.remove("nav-mini");
+      menuFlutuante.classList.remove("active");
     }
   });
 
-  menuBolha.addEventListener('click', () => {
-    menuFlutuante.classList.toggle('active');
+  // === Menu flutuante ===
+  menuBolha.addEventListener("click", () => {
+    menuFlutuante.classList.toggle("active");
   });
 
-  document.addEventListener('click', (e) => {
-    if(!menuFlutuante.contains(e.target) && !menuBolha.contains(e.target)){
-      menuFlutuante.classList.remove('active');
+  document.addEventListener("click", (e) => {
+    if (!menuFlutuante.contains(e.target) && !menuBolha.contains(e.target)) {
+      menuFlutuante.classList.remove("active");
     }
   });
 
-  projectMedia.forEach(media => {
-    const video = media.querySelector('video');
-    if(video){
-      media.addEventListener('click', () => {
-        if(video.paused) video.play();
-        else video.pause();
-      });
-    }
+  // === Play/Pause dos vídeos ===
+  projectMedia.forEach(video => {
+    video.addEventListener("click", () => {
+      if (video.paused) video.play();
+      else video.pause();
+    });
   });
 
+  // === Typed effect ===
   const typeSpeed = 45;
   const initialDelay = 500;
-  if(typingSection){
+  if (typingSection) {
     const observerTyping = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
-        if(entry.isIntersecting){
+        if (entry.isIntersecting) {
           let totalDelay = initialDelay;
           typingLines.forEach(line => {
             const text = line.dataset.original || line.textContent;
             line.dataset.original = text;
             line.textContent = "";
+
             setTimeout(() => {
               let i = 0;
               function type() {
-                if(i < text.length){
+                if (i < text.length) {
                   line.textContent += text.charAt(i);
                   i++;
                   setTimeout(type, typeSpeed);
@@ -102,6 +81,7 @@ document.addEventListener("DOMContentLoaded", () => {
               }
               type();
             }, totalDelay);
+
             totalDelay += text.length * typeSpeed + 300;
           });
         }
@@ -110,9 +90,36 @@ document.addEventListener("DOMContentLoaded", () => {
     observerTyping.observe(typingSection);
   }
 
+  // === Skills scatter animation ===
+  const observerSkills = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        skillItems.forEach(item => {
+          const randX = Math.random();
+          const randY = Math.random();
+          const randR = Math.random();
+          item.style.setProperty("--randX", randX);
+          item.style.setProperty("--randY", randY);
+          item.style.setProperty("--randR", randR);
+          item.classList.add("scatter");
+        });
+
+        setTimeout(() => {
+          skillItems.forEach(item => {
+            item.classList.remove("scatter");
+            item.style.opacity = "1";
+          });
+        }, 500);
+      }
+    });
+  }, { threshold: 0.3 });
+
+  if (skillsSection) observerSkills.observe(skillsSection);
+
+  // === Fade-in dos contatos ===
   const observerContact = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
-      if(entry.isIntersecting){
+      if (entry.isIntersecting) {
         let delay = 0;
         contactItems.forEach(item => {
           item.style.transitionDelay = `${delay}s`;
@@ -124,5 +131,6 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   }, { threshold: 0.3 });
-  if(contactItems.length > 0) observerContact.observe(contactItems[0].parentElement);
+
+  if (contactItems.length > 0) observerContact.observe(contactItems[0].parentElement);
 });
