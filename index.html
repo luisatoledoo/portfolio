@@ -20,7 +20,10 @@
     </ul>
   </nav>
 
-  <div class="menu-bolha"><span></span></div>
+  <div class="menu-bolha">
+    <span></span>
+  </div>
+
   <div class="menu-flutuante">
     <ul>
       <li><a href="#home">Home</a></li>
@@ -44,11 +47,10 @@
 <section id="projects" class="fade-in">
   <h2>Projetos</h2>
   <div class="projects-columns">
-
     <div class="column-left">
       <div class="project-card fade-in">
         <div class="card-media">
-          <video src="video/video1.mp4" poster="img/thumb1.png" muted loop></video>
+          <video src="/video/video1.mp4" poster="/img/thumb1.png" muted loop onclick="this.paused ? this.play() : this.pause();"></video>
         </div>
         <div class="card-overlay">
           <h3>Projeto 1</h3>
@@ -59,7 +61,7 @@
 
       <div class="project-card fade-in">
         <div class="card-media">
-          <video src="video/video3.mp4" poster="img/thumb3.png" muted loop></video>
+          <video src="/video/video3.mp4" poster="/img/thumb3.png" muted loop onclick="this.paused ? this.play() : this.pause();"></video>
         </div>
         <div class="card-overlay">
           <h3>Projeto 3</h3>
@@ -70,7 +72,7 @@
 
       <div class="project-card fade-in">
         <div class="card-media">
-          <video src="video/video5.mp4" poster="img/thumb5.png" muted loop></video>
+          <video src="/video/video5.mp4" poster="/img/thumb5.png" muted loop onclick="this.paused ? this.play() : this.pause();"></video>
         </div>
         <div class="card-overlay">
           <h3>Projeto 5</h3>
@@ -81,11 +83,11 @@
 
       <div class="project-card fade-in">
         <div class="card-media">
-          <img src="img/thumb_site1.png" alt="To-do List">
+          <img src="/img/thumb_site1.png" alt="To-do List">
         </div>
         <div class="card-overlay">
           <h3>To-do List</h3>
-          <p>Aplicação web para gerenciamento de tarefas, com funcionalidades de adicionar, editar e remover tarefas. <a href="https://luisatoledoo.github.io/To-do-list" target="_blank">Visitar</a></p>
+          <p>Aplicação web para gerenciamento de tarefas, com funcionalidades de adicionar, editar e remover tarefas. O usuário pode organizar seu dia a dia de forma prática e visual. <a href="https://luisatoledoo.github.io/To-do-list" target="_blank">Visitar</a></p>
         </div>
       </div>
     </div>
@@ -93,7 +95,7 @@
     <div class="column-right">
       <div class="project-card fade-in">
         <div class="card-media">
-          <video src="video/video2.mp4" poster="img/thumb2.png" muted loop></video>
+          <video src="/video/video2.mp4" poster="/img/thumb2.png" muted loop onclick="this.paused ? this.play() : this.pause();"></video>
         </div>
         <div class="card-overlay">
           <h3>Projeto 2</h3>
@@ -104,7 +106,7 @@
 
       <div class="project-card fade-in">
         <div class="card-media">
-          <video src="video/video4.mp4" poster="img/thumb4.png" muted loop></video>
+          <video src="/video/video4.mp4" poster="/img/thumb4.png" muted loop onclick="this.paused ? this.play() : this.pause();"></video>
         </div>
         <div class="card-overlay">
           <h3>Projeto 4</h3>
@@ -115,15 +117,14 @@
 
       <div class="project-card fade-in">
         <div class="card-media">
-          <img src="img/thumb_site2.png" alt="Yoru Garage">
+          <img src="/img/thumb_site2.png" alt="Yoru Garage">
         </div>
         <div class="card-overlay">
           <h3>Yoru Garage</h3>
-          <p>Site para exibir carros, com informações detalhadas sobre cada modelo, fotos e descrição. <a href="https://luisatoledoo.github.io/Yoru-Garage" target="_blank">Visitar</a></p>
+          <p>Site para exibir carros, com informações detalhadas sobre cada modelo, fotos e descrição. Serve como vitrine digital, permitindo que visitantes conheçam os veículos de forma organizada. <a href="https://luisatoledoo.github.io/Yoru-Garage" target="_blank">Visitar</a></p>
         </div>
       </div>
     </div>
-
   </div>
 </section>
 
@@ -155,5 +156,6 @@
 </footer>
 
 <script src="scripts.js"></script>
+
 </body>
 </html>
