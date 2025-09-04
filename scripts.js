@@ -12,7 +12,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const typingLines = document.querySelectorAll(".typing-line");
   const projectMedia = document.querySelectorAll(".card-media video");
 
-  // === Fade-in de elementos ===
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) entry.target.classList.add("visible");
@@ -22,14 +21,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
   fadeElements.forEach(el => observer.observe(el));
 
-  // === Parallax nas colunas ===
   window.addEventListener("scroll", () => {
     const scrollY = window.scrollY;
     const speed = 0.2;
     if (columnLeft) columnLeft.style.transform = `translateY(${400 - scrollY * speed}px)`;
     if (columnRight) columnRight.style.transform = `translateY(${-50 + scrollY * speed}px)`;
 
-    // Header mini
     if (scrollY > 100) {
       header.classList.add("nav-mini");
     } else {
@@ -38,7 +35,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // === Menu flutuante ===
   menuBolha.addEventListener("click", () => {
     menuFlutuante.classList.toggle("active");
   });
@@ -49,7 +45,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // === Play/Pause dos vídeos ===
   projectMedia.forEach(video => {
     video.addEventListener("click", () => {
       if (video.paused) video.play();
@@ -57,7 +52,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // === Typed effect ===
   const typeSpeed = 45;
   const initialDelay = 500;
   if (typingSection) {
@@ -90,7 +84,6 @@ document.addEventListener("DOMContentLoaded", () => {
     observerTyping.observe(typingSection);
   }
 
-  // === Skills scatter animation ===
   const observerSkills = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -116,7 +109,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (skillsSection) observerSkills.observe(skillsSection);
 
-  // === Fade-in dos contatos ===
   const observerContact = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -134,3 +126,4 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (contactItems.length > 0) observerContact.observe(contactItems[0].parentElement);
 });
+
